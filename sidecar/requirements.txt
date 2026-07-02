@@ -1,0 +1,7 @@
+# OMR sidecar — Python service: PDF -> MusicXML -> MIDI + JSON timeline
+fastapi>=0.136
+uvicorn[standard]>=0.48
+python-multipart>=0.0.9
+pydantic>=2.13
+music21>=10.3
+pymupdf>=1.24

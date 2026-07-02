@@ -1,0 +1,89 @@
+{
+  "name": "pdf2midi-app",
+  "private": true,
+  "version": "0.1.0",
+  "description": "PDF sheet-music -> MIDI playback with synced note highlighting and instrument visualization",
+  "main": "dist-electron/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "dist": "npm run build && electron-builder",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "opensheetmusicdisplay": "^1.8.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "spessasynth_lib": "^4.3.6",
+    "tone": "^15.0.4",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vite-plugin-electron": "^0.28.8",
+    "vite-plugin-electron-renderer": "^0.14.6"
+  },
+  "build": {
+    "appId": "ua.pdf2midi.app",
+    "productName": "PDF2MIDI",
+    "copyright": "Copyright © 2026",
+    "npmRebuild": false,
+    "directories": {
+      "output": "release",
+      "buildResources": "resources"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json",
+      "!**/node_modules/**"
+    ],
+    "asarUnpack": [
+      "dist/soundfont.sf2",
+      "dist/assets/**"
+    ],
+    "extraResources": [
+      {
+        "from": "../sidecar",
+        "to": "sidecar",
+        "filter": [
+          "app/**/*",
+          "requirements.txt",
+          "README.md",
+          "!**/__pycache__/**",
+          "!**/*.pyc"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "resources/icon.png",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "PDF2MIDI",
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "${productName} Setup ${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "${productName} ${version} Portable.${ext}"
+    }
+  }
+}
