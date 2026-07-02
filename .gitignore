@@ -1,0 +1,33 @@
+# Dependencies
+app/node_modules/
+
+# Build output
+app/dist/
+app/dist-electron/
+app/release/
+
+# Electron-builder output
+app/*.exe
+app/*.blockmap
+app/*.yml
+app/win-*/
+
+# Claude project files
+app/.claude/
+
+# Python
+sidecar/app/__pycache__/
+**/__pycache__/
+**/*.pyc
+
+# OMR outputs (generated, user-specific)
+omr_out/
+omr_out2/
+
+# Work dirs (auto-created by Audiveris/sidecar)
+work/
+work*/
+
+# OS
+Thumbs.db
+.DS_Store
